@@ -11,26 +11,29 @@ body{
     flex: 0 0 auto;
     width: 55vh;
     height: 80vh;
-    border: solid black 1px;
+    border: outset black 12px;
     border-radius: 16px;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    gap: 24px;
     padding: 36px;
 }
 .calcName{
     display: flex;
-    flex: 0 0 auto;
+    flex: 1 0 auto;
     width: 100%;
-    border: solid black 1px;
+    align-items: flex-end;
+    font-size: 2em;
+    font-style: italic;
+    font-weight: 700;
 }
 .screen{
     flex: 0 0 auto;
-    width: 100%;
+    width: 96.5%;
     height: 10%;
     border: solid black 1px;
     border-radius: 16px;
+    margin: 0 0 12px 0;
 }
 .keypad{
     display: flex;
@@ -38,9 +41,8 @@ body{
     width: 100%;
     height: 75%;
     border-radius: 16px;
-    
+    margin:12px 0 0 0;
     flex-direction: column;
-    border: solid black 1px;
 }
 .operatorButtons{
     display: flex;
