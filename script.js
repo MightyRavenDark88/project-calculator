@@ -22,7 +22,15 @@ function printScreen(input){
         screenOutput.textContent = input;
     }
     else if(input === "="){
-        screenOutput.textContent = result;
+        if(result.length <= 11){
+            screenOutput.textContent = result;
+        }
+        else if(11 < result.length <=15){
+            screenOutput.textContent = result.toFixed(5 -(results.length - 10));
+        }
+        else{
+            screenOutput.textContent = "ERROR";
+        }
     }
     else if(input === "C"){
         screenOutput.textContent = 0;
@@ -155,7 +163,7 @@ buttons.forEach(button => {
                         console.log(fullNum2, fullNum1);
                         break;
                 }
-                result = fullNum2;
+                result = fullNum2.toFixed(5);
                 printScreen(input);
             }
             else{
