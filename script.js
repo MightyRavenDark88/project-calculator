@@ -67,7 +67,8 @@ buttons.forEach(button => {
                 num += input;
                 console.log("added number to num");
             }
-            result = 1;
+
+            result = 0;
         }
 
         //if operator button is pressed
@@ -80,18 +81,15 @@ buttons.forEach(button => {
                 if(fullNum2 === undefined){
                     fullNum2 = 0;
                     fullNum1 = num;
-                    num = undefined;
                 }
                 else if(result === 0){
                         fullNum1 = num;
-                        num = undefined;
                 }
                 
                 //sets current operator
                 switch(id){
                     case plusButtonId:
                         operator1 = "+";
-                        console.log("logged add operator")
                         break;
                     case minusButtonId:
                         operator1 = "-";
@@ -117,15 +115,23 @@ buttons.forEach(button => {
                             fullNum2 = subtract(fullNum2, fullNum1);
                             break;
                         case "*":
+                            if(fullNum2 === 0){
+                                fullNum2 = 1;
+                            }
                             fullNum2 = multiply(fullNum2, fullNum1);
+                            console.log(fullNum2, fullNum1);
                             break;
                         case "/":
+                            if(fullNum2 === 0){
+                                fullNum2 = fullNum1 * fullNum1;
+                            }
                             fullNum2 = divide(fullNum2, fullNum1);
+                            console.log(fullNum2, fullNum1);
                             break;
                     }
                 }
                 operator2 = operator1;
-                result = 0;
+                num = undefined;
             }
 
             //if equal button pressed
@@ -141,16 +147,19 @@ buttons.forEach(button => {
                         break;
                     case "*":
                         fullNum2 = multiply(fullNum2, fullNum1);
+                        console.log("multiplied");
+                        console.log(fullNum2, fullNum1);
                         break;
                     case "/":
                         fullNum2 = divide(fullNum2, fullNum1);
+                        console.log(fullNum2, fullNum1);
                         break;
                 }
                 result = fullNum2;
                 printScreen(input);
             }
             else{
-                fullNum1 = 0;
+                fullNum1 = undefined;
                 fullNum2 = undefined;
                 num = undefined;
                 result = 0;
