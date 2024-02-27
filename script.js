@@ -18,11 +18,14 @@ let input,
 //function that prints entries to screen
 function printScreen(input){
     const screenOutput = document.getElementById('screen');
-    if(screenOutput.textContent.trim() == 0 && input !== "="){
+    if(screenOutput.textContent.trim() == 0 && input !== "=" && input !== "C"){
         screenOutput.textContent = input;
     }
     else if(input === "="){
         screenOutput.textContent = result;
+    }
+    else if(input === "C"){
+        screenOutput.textContent = 0;
     }
     else{
         screenOutput.textContent += input;
@@ -71,12 +74,12 @@ buttons.forEach(button => {
                 printScreen(input);
                 if(fullNum2 === undefined){
                     fullNum2 = 0;
-                    fullNum1 = parseFloat(num);
-
+                    fullNum1 = num;
                     num = undefined;
-                    console.log("initial");
-                    console.log(fullNum1);
-                    console.log(fullNum2);
+                }
+                else{
+                    fullNum1 = num;
+                    num = undefined;
                 }
                 //sets current operator
                 switch(id){
@@ -94,42 +97,35 @@ buttons.forEach(button => {
                         operator1 = "/";
                         break;
                     }
-                //sets last operator
+                //sets last operator if undefined
                 if(operator2 === undefined){
                     operator2 = operator1;
+                    console.log("set last operator");
                 }
-                else{//calculates result according to non-equal operator
-                        switch(operator2){
-                            case "+":
-                                fullNum2 = add(fullNum2, fullNum1);
-                                console.log("added")
-                                break;
-                            case "-":
-                                fullNum2 = subtract(fullNum2, fullNum1);
-                                console.log("subtracted")
-                                break;
-                            case "*":
-                                fullNum2 = multiply(fullNum2, fullNum1);
-                                console.log("multiplied")
-                                break;
-                            case "/":
-                                fullNum2 = divide(fullNum2, fullNum1);
-                                console.log("divided")
-                                break;
-                        }
-                    operator2 = operator1;
-                    fullNum1 = parseFloat(num);
-                    num = undefined;
-                    console.log("secondary");
-                    console.log(fullNum1);
-                    console.log(fullNum2);
+                //applies operation
+                switch(operator2){
+                    case "+":
+                        fullNum2 = add(fullNum2, fullNum1);
+                        console.log("added")
+                        break;
+                    case "-":
+                        fullNum2 = subtract(fullNum2, fullNum1);
+                        console.log("subtracted")
+                        break;
+                    case "*":
+                        fullNum2 = multiply(fullNum2, fullNum1);
+                        console.log("multiplied")
+                        break;
+                    case "/":
+                        fullNum2 = divide(fullNum2, fullNum1);
+                        console.log("divided")
+                        break;
                 }
-            }
-            else if(id !== cButtonId){
-
+                operator2 = operator1;
+                result = fullNum2;
             }
             else{
-
+                printScreen(input);
             }
         }
     })
