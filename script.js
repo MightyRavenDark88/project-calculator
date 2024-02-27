@@ -22,11 +22,12 @@ function printScreen(input){
         screenOutput.textContent = input;
     }
     else if(input === "="){
+        
         if(result.length <= 11){
-            screenOutput.textContent = result;
+            screenOutput.textContent = parseFloat(result.toString().replace(/(\.[0-9]*?)0+$/, '$1'));
         }
-        else if(11 < result.length <=15){
-            screenOutput.textContent = result.toFixed(5 -(results.length - 10));
+        else if(11 < result.length <=16){
+            screenOutput.textContent = parseFloat(result.toFixed(5 -(results.length - 10)).toString().replace(/(\.[0-9]*?)0+$/, '$1'));
         }
         else{
             screenOutput.textContent = "ERROR";
